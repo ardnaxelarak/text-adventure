@@ -1,0 +1,752 @@
+\documentclass{report}
+\DeclareFontShape{OT1}{cmtt}{bx}{n}{<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>cmttb10}{}
+\usepackage{amsmath}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{makeidx}
+\usepackage{enumitem}
+\usepackage[notindex]{tocbibind}
+\makeindex
+\usepackage{hyperref}
+
+\setdescription{leftmargin=\parindent, labelindent=\parindent, font=\ttfamily\bfseries}
+
+\hypersetup{
+	bookmarks=true,
+	pdftitle={Documentation},
+	colorlinks=true,
+	linkcolor=blue
+}
+
+\let\cleardoublepage\clearpage
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\newcommand{\boldindex}[1]{\textbf{\hyperpage{#1}}}
+\newcommand{\pdef}[3]{\index{#1/#3@{\tt #1/#3}}}
+\newcommand{\pred}[3]{\section[{\tt #1/#3}]{{\tt #1#2}} \pdef{#1}{#2}{#3}}
+\newcommand{\spred}[3]{\subsection[{\tt #1/#3}]{{\tt #1#2}} \pdef{#1}{#2}{#3}}
+\newcommand{\sspred}[3]{\subsubsection[{\tt #1/#3}]{{\tt #1#2}} \pdef{#1}{#2}{#3}}
+\newcommand{\predn}[3]{\pred{#1}{#2}{#3} {\tt #1/#3}}
+\newcommand{\spredn}[3]{\spred{#1}{#2}{#3} {\tt #1/#3}}
+\newcommand{\sspredn}[3]{\sspred{#1}{#2}{#3} {\tt #1/#3}}
+
+\begin{document}
+\title{``Dr. Rorhbaugh and Mr. Tigerram" \\ Documentation}
+\author{Nathan R Chaney \\ Zachary J Felix \\ Rebekah P Smith}
+\maketitle
+
+\tableofcontents
+
+\part{User Guide}
+\chapter{Introduction}
+``Dr. Rohrbaugh and Mr. Tigerram'' is a text adventure created by Nathan Chaney, Zachary Felix, and Rebekah Smith for their final project for Organization of Programming Languages class in the spring of 2013.  The game takes place at Messiah College, and the player discovers that Dr. Rohrbaugh (the professor for the aforementioned class) has gone missing. The object of the game is to determine what has happened and to resolve the situation if possible.
+
+Based on the player's actions, a number of different endings are possible. Some endings are better than others, and it is up to you, the player, to figure out how to achieve each ending!\footnote{This is how we try to get you addicted to our game.}
+
+\chapter{Getting Started}
+The player begins in Dr. Rohrbaugh's office with a shovel. The player is controlled by entering commands in English at the prompt, which control the player. Throughout this section of the document, commands typed to the interpreter will be formatted in a bold, fixed-with font, {\tt \bf like this}.
+
+\section{Movement}
+Basic commands for movement are of the form {\tt \bf go south}, {\tt \bf south}, or just {\tt \bf s}. The twelve main directions are listed as follows (with their abbreviations in parentheses): {\tt \bf north} ({\tt \bf n}), {\tt \bf northeast} ({\tt \bf ne}), {\tt \bf east} ({\tt \bf e}), {\tt \bf southeast} ({\tt \bf se}), {\tt \bf south} ({\tt \bf s}), {\tt \bf southwest} ({\tt \bf sw}), {\tt \bf west} ({\tt \bf w}), {\tt \bf northwest} ({\tt \bf nw}), {\tt \bf up} ({\tt \bf u}), {\tt \bf down} ({\tt \bf d}), {\tt \bf in}\footnote{{\tt \bf in} does not have a shortened form.}, and {\tt \bf out}\footnote{neither does {\tt \bf out}.}.
+
+\section{Objects}
+As you go on your quest, you will likely encounter a number of objecs that can be very useful. This section describes some common commands to interact with these objects.
+
+Objects are each described by a (hopefully comprehensive) list of words, which are matched with the words typed by the user. If one word doesn't work to refer to an object, try other words that might be defined; if that still doesn't work, typing a command with a specific object will give a menu of all possible objects.
+
+To examine an object in more detail, use a command such as {\tt \bf examine key} (or the equivalent {\tt \bf x key}), {\tt \bf look at key}, {\tt \bf look key}, or {\tt \bf l key}. Note that {\tt \bf look} by itself will look at the location you are in, and not an object.
+
+To take an object, use a command such as {\tt \bf take plant}, {\tt \bf grab fish}, {\tt \bf pick up bullet}, or {\tt \bf get sword}. If there is no such object to be taken, you will be told as such; if there are multiple objects fitting the description, a pop-up menu will appear asking which one you mean. Note that not all objects can be taken.
+
+To drop an object, use a command such as {\tt \bf drop brick}, or {\tt \bf put down chair}. Based on other characters or objects in the area, this might have some side effects, so try all sorts of things!
+
+To list the objects you are carrying, type {\tt \bf inventory} or {\tt \bf i}. This will also list the amount of money you are carrying. If you get stuck, try looking at the objects you are carrying to provide some insight to your situation.
+
+To eat an object, use a command such as {\tt \bf eat melon}, {\tt \bf consume melon}, {\tt \bf swallow melon}, or even {\tt \bf ingest melon}. Note that not all objects can be eaten, and some objects might be considered harmful if eaten.
+
+To unlock a door, use a command such as {\tt \bf unlock door}.\footnote{Hopefully this was fairly obvious.}Note that to unlock a door you must have the appropriate key or keys.  Likewise, to lock a door use the command {\tt \bf lock door}.
+
+\section{People}
+Throughout your quest, you will encounter a number of people. Each person has their own dialogue and will generally provide helpful advice eventually, though determining what is helpful and what is not can be a bit tricky. This section describes common commands for interacting with people and person-like characters.
+
+To talk to a character, use the command {\tt \bf talk to ghost} or the abbreviation {\tt \bf t ghost}. As mentioned above, each character will say different things, and some things are more helpful than others. If you get stuck, try talking to the many people you will find around campus for some hints as to what to do.
+
+To throw something at a character, use a command along the lines of {\tt \bf throw baseball to umpire} or {\tt \bf throw brick at troll}. Only certain things can be thrown at people, and some things are more helpful than others.  
+In a similar way, to give an object to a character, use a command such as {\tt\bf give seeds to gardener}.
+
+To attack a person, use a command such as {\tt \bf attack hobgoblin with jackhammer}. Attacking people is generally not a good idea and could lead to you being killed.
+
+\section{Locations}
+Throughout the game, you will travel through a large number of locations. Each one has something useful to offer the player, unless it doesn't. 
+
+To dig at a location, type {\tt \bf dig}. Note that the player must have some sort of digging implement to do this, and that it is not necessarily useful to dig in every location.
+
+When located at a store, type {\tt \bf buy} to display the wares for sale and purchase something. Perhaps this is fairly obvious, but one must possess the required amount of money into to purchase an object.
+
+\chapter{Hints}
+\section{Objects}
+This section describes a few useful\footnote{Note: some objects might not actually be useful} objects that the player may want to acquire.
+
+\begin{itemize}
+\item The player starts with a shovel. This is useful for digging, and the player would probably not be well served to abandon his trusty shovel.
+
+\item Campus is very large. If the player can find some way of travelling faster, it would probably aid his quest, as it could save a considerable amount of time in traversing distance. Perhaps someone on campus will be able to help you find such a device.
+
+\item Rumors have been spread of a magical floppy disk somewhere on campus that can hold 1.6 MB. Perhaps the player would find this useful as well.\footnote{If you actually waste time looking for this, don't blame us; we never said it was actually in the game...}
+\end{itemize}
+
+\section{People}
+This section mentions some of the people you might find around campus, and where they tend to hang out.
+
+\begin{itemize}
+\item Kim Phipps, the president of Messiah College, might have some useful information for you. She lives at the president's house.
+\item Dr. Weaver, one of the CIS professors, might have some useful information about a legend that might be relevant. He tends to hang out near his office in Frey, but sometimes wanders over to Lottie to eat.
+\item Dr. Fish, an engineering professor, knows a lot of students and might have heard something about Dr. Rohrbaugh's fate. He generally wanders around Frey.
+\end{itemize}
+
+\part{Here Be Spoilers}
+\chapter{Endings}
+There are six different possible endings, not including getting killed.\footnote{If you die while playing, that would perhaps be another ending as well, but including that seems unnecessary as well.}
+\begin{itemize}
+\item There are a number of imaginary objects around campus. Acquiring and using these objects a certain number of times will result in the player waking up and realizing the entire game was a dream.
+\item If the player chooses enough violent actions, such as killing the troll or awkward couple, the player will realize that they killed Dr. Rohrbaugh upon reaching the final lair.
+\item If the player chooses a smaller number of violent actions, the player will realize that they kidnapped Dr. Rohrbaugh upon reaching the final lair.
+\item If the player has finished the game without talking to any characters, the player will discovere, upon entering the final lair, that they were Dr. Rohrbaugh all along.
+\item If the player reaches the final lair with both Boneless Carl the stuffed penguin and the nutmeg, the Tigerram will be present in the final lair; Boneless Carl will come to life and sprinkle the nutmeg on the Tigerram, who will turn into Dr. Rohrbaugh, who has now been rescued from the dreadful curse of the Tigerram.
+\item If the player satisfies none of the other conditions, the player will discover Dr. Rohrbaugh at the final lair; he had been kidnapped by the Tigeram.
+\end{itemize}
+
+\chapter{Debug Mode}
+Debug mode can be turned on with the command {\tt \bf debug}. This will allow the following commands, which should not generally used when playing the game, lest it spoil the fun.\footnote{Breaking the game while in debug mode is not covered by the warranty.}
+\begin{itemize}
+\item {\tt \bf acquire} will magically obtain an object no matter where it is, assuming the player does not have it, using the same syntax as {\tt \bf take}.
+\item {\tt \bf poof} will teleport the player to a location of their choosing. Note that this requires knowing the name of the location in the code, which could be somewhat unintuitive for some locations.
+\item {\tt \bf counters} will list all counters with their respective values
+\item {\tt \bf showpeople} will list all people and show their current locations.
+\end{itemize}
+
+\part{Code Documentation}
+\chapter{Describing Things}
+\section{Generic Predicates}
+\spredn{description}{(Name, Type, ShortName, LongName)}{4}
+describes the object referred to by {\tt Name}.  Current values for {\tt Type}, with their meanings, are listed below.  {\tt ShortName} is the name that will generally be displayed for this object, and {\tt LongName} will generally be displayed upon {\tt look}ing at the object.
+
+\begin{description}
+	\item[building] -- a building that the player can be standing outside of
+	\item[maze] -- a room inside representing a maze
+	\item[place] -- an outside place that is not a specific building
+	\item[room] -- a room inside a building
+	\item[waypoint] -- a location outside that is relatively unimportant other than that it is on the way to somewhere else
+	\item[door] -- a door that can be locked to prevent progress
+	\item[key] -- a key that can be used to unlock a door
+	\item[sa] -- a stuffed animal
+	\item[dead] -- a dead thing
+	\item[object] -- a general object of some sort that can be picked up
+	\item[fakeobject] -- a general object of some sort that cannot be picked up
+	\item[lightsource] -- an object that provides light
+	\item[person] -- a specific person who can be talked to and might wander around
+	\item[monster] -- some sort of entity that is probably less specific than a person and might hinder the player's progress
+\end{description}
+
+\spredn{get\_name}{(Thing, Name)}{2}
+is an easier way to get the name of an object from {\tt description/4}, and is set up to be used with {\tt select\_thing/3}.
+
+\spred{helplines}{(List)}{1}
+{\tt List} contains the list of lines to print in the help message.
+
+\spredn{look\_at}{(Object)}{1}
+is called whenever the user looks at {\tt Object}. The default definition in {\tt defaultRules.pl} will print {\tt LongName} from {\tt description/4}, followed by a newline.
+
+\spred{title}{(Title)}{1}
+{\tt Title} contains the title of the game.
+
+\spredn{words}{(Object, List)}{2}
+indicates that the words in {\tt List} will describe {\tt Object}, which is used in identying the object the player is referring to. An object will be considered to match the description if the terms the player has typed are a subset of the terms in {\tt List}
+
+\section{Describing Locations}
+\spredn{adjacent}{(Loc1, Loc2, Dir1, Dir2)}{4}
+asserts that there is a path from {\tt Loc1} to {\tt Loc2} in direction {\tt Dir1}, and one from {\tt Loc2} to {\tt Loc1} in direction {\tt Dir2}, that can always be used to travel.
+
+\spredn{building}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt building} in {\tt description/4}. Buildings are locations that are the exteriors of buildings.
+
+\spredn{connected}{(Loc1, Loc2, Dir, Pred)}{4}
+indicates that there is a path from {\tt Loc1} to {\tt Loc2} in direction {\tt Dir}, and that when the player attempts to travel it, {\tt call(Pred)} should be executed, and the player should only succeed if that call succeeds. This is determined from {\tt adjacent/4} and {\tt connection/4}.
+
+\spredn{connection}{(Loc1, Loc2, Dir, Pred)}{4}
+asserts that there is a path from {\tt Loc1} to {\tt Loc2} in direction {\tt Dir}, and that when the player attempts to travel it, {\tt call(Pred)} should be executed, and the player should only succeed if that call succeeds.
+
+\sspredn{checkBook}{}{0}
+is checked when the player attempts to leave the library; if they are carrying a book that has not been checked out, it will result in failure.
+
+\sspredn{checkBungee}{}{0}
+is checked when the player attempts to jump off the swinging bridge; it only succeeds if the player possesses the bungee cord.
+
+\sspredn{checkCard}{}{0}
+is checked when the player attempts to enter Lottie, and checks if the player is carrying and id card.
+
+\sspredn{checkCardLair}{}{0}
+is checked when the player attempts to go through the door with the card swiper in the path to the lair.
+
+\sspredn{checkDoor}{(Door)}{1}
+is checked when the player attempts to enter a door that has the potential to be locked; it will succeed if the door is unlocked or fail if it is locked, and print the appropriate message either way.
+
+\sspredn{checkCricket}{}{0}
+is checked when the player attempts to pass the secret service, and only succeeds if the player is carrying a cricket.
+
+\sspredn{checkFood}{}{0}
+is checked when the player attempts to pass the troll, and only succeeds if there is food located in the troll's location.
+
+\sspredn{checkSS}{}{0}
+is checked when the player attempts to go past the president's secret service.
+
+\sspredn{checkStairs}{}{0}
+is checked when the player attempts to go up or down in Frey, and asks the player whether they would like to take the elevator or stairs. Taking the elevator results in a failure.
+
+\sspredn{leaveDoor}{(Door)}{1}
+is checked when the player attempts to leave through a door that has the potential to be locked; it always succeeds and merely prints some text based on whether the door is locked or not.
+
+\spredn{dark}{(Location)}{1}
+asserts that {\tt Location} is dark and that the player will need a light source to navigate through it.
+
+\spredn{fakeDir}{(Loc, Dir, Message)}{3}
+allows the player to attempt to go in direction {\tt Dir} from {\tt Loc}, but prints {\tt Message} instead of actually allowing the movement. This would be useful for cases of travelling to places that are not defined, such as insides of buildings.
+
+\spredn{fasttravel}{(Location)}{1}
+asserts that {\tt Location} is a valid target for the user to bike to (assuming they have already visited it).
+
+\spredn{maze}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt maze} in {\tt description/4}. Maze areas are part of a complicated path intended to be confusing.
+
+\spredn{place}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt place} in {\tt description/4}. Places are locations of some variety that are outside--apparently they can be dug in, according to a comment in {\tt knowledgeBase.pl}, but being an important generic outside location that is not a building seems to be the criterion.
+
+\spredn{room}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt room} in {\tt description/4}. Rooms are indoor locations that are, well, rooms.
+
+\spredn{spot}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt building}, {\tt place}, {\tt room}, or {\tt waypoint} in {\tt description/4}.
+
+\spredn{waypoint}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt waypoint} in {\tt description/4}. Waypoints are locations that are outside that are not particularly noteworthy in their own right, but rather are a path between some other, more important locations.
+
+\section{Describing Objects}
+Defining a new object should be fairly simple; only a relatively few number of predicates need to be defined.  First, {\tt description/4} should be defined to provide messages for the player to {\tt look} at the object and give the game a common name to refer to it; Second, {\tt words/2} should be defined to declare what the player can use to refer to it; Third, {\tt pick\_up/1} should be declared to define the behavior if the player attempts to pick it up. (Note, however, that for people and doors a default failure predicate for {\tt pick\_up/1} is defined). For objects that cannot be moved or taken by the player, this is all that is needed. For objects that can be moved, however, {\tt see\_object/1} should also be declared to define the message that should be printed when the player enters a location with it, and {\tt put\_down/1} should be declared to define the behavior of the player attempting to drop the object.
+
+\spredn{action}{(Command, Object)}{2}
+is used to define custom commands for specific objects; {\tt Command} is a list of one or two words that are a command typed by the player that would not be otherwise recognized, and {\tt Object} is the object it will be called on.  This should probably only be used in cases where it only makes sense to perform a certain action on one item.
+
+\spredn{can\_see}{(Thing)}{1}
+succeeds if the player is in the same location as {\tt Thing}.
+
+\spredn{common\_name}{(Object, NoArticle, Article)}{3}
+isn't actually really used for anything any more, since we changed the short names in {\tt description/4} to lower-case; perhaps it will be changed to a predicate to indicate the proper article at some point.
+
+\spredn{dead\_thing}{(Object)}{1}
+succeeds if {\tt Object} is described as {\tt dead} in {\tt description/4}.
+
+\spredn{door}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt door} in {\tt description/4}. Doors are objects specifically created to be able to be locked or unlocked, and not picked up.
+
+\spredn{food}{(Object)}{1}
+indicates that {\tt Object} is some sort of food.
+
+\spredn{key}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt key} in {\tt description/4}. Keys are objects specifically created for locking or unlocking doors.
+
+\spredn{object}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt object} or {\tt fakeobject} in {\tt description/4}, or is a door, key, lightsource, or stuffed animal. Objects are generic things that can generally be picked up, put down, or looked at.
+
+\spredn{pick\_up}{(Object)}{1}
+will be called any time the player attempts to pick up {\tt Object}. If the predicate succeeds, the player will successfully pick up {\tt Object}, otherwise it will remain at its current location. This predicate should always be defined for an object, since the player should always at least receive a message for attempting to pick up an object. For fake objects that cannot be picked up, this predicate should print a message and then fail.
+
+\spredn{put\_down}{(Object)}{1}
+will be called any time the player attempts to drop {\tt Object}. If the predicate succeeds, the player will successfully drop {\tt Object}, otherwise it will remain in the player's inventory. Either way, some sort of message should usually be printed (which should end with a newline).  This predicate does not need to be defined for objects that cannot be picked up.
+
+\spredn{see\_object}{(Object)}{1}
+will be called any time the description of the location of the player is printed; it will be called for each object in that location.  If the object is immobile and mentioned in the description of the location, this predicate should be defined; generally this predicate should only contain a {\tt writefw/2} statement (which should end with a newline) and perhaps some conditions.
+
+\spredn{stuffedanimal}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt sa} in {\tt description/4}.
+
+\spredn{takeable}{(Object)}{1}
+succeeds if {\tt Object} is described as an {\tt object}, {\tt key}, {\tt sa}, or {\tt lightsource} in {\tt description/4}.
+
+\spredn{weapon}{(Object)}{1}
+indicates that {\tt Object} is some sort of weapon.
+
+\spredn{writeable}{(Object, Description, Write, Erase)}{4}
+indicates that {\tt Object} is a writeable surface that the player can write on and erase. {\tt Description} is the name of the object, {\tt Write} is the instrument the player uses to write on it, and {\tt Erase} is what the player uses to erase it.
+
+\section{Describing People}
+
+\spredn{enter}{(Person)}{1}
+will be called any time the player enters the same location as {\tt Person}.
+
+\sspredn{animal\_thrown}{(Animal, Index)}{2}
+a helper predicate for when the stuffed animal thrower throws a stuffed animal at the player; {\tt Index} represents the player's choice of what to do.
+
+\spredn{person}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt person} in {\tt description/4}.
+
+\spredn{picks\_up}{(Person, List)}{2}
+defines a list of objects that {\tt Person} will pick up if they are in a room that they enter.
+
+\spred{see\_person}{(Person)}{1}
+Similar to {\tt see\_object/1}, {\tt see\_person/1} will be called any time the description of the location of the player is printed; it will be called for each person in that location. Generally this predicate should only contain a {\tt writefw/2} statement (which should end with a newline) and perhaps some conditions.
+
+\spredn{wanders}{(Person, List)}{2}
+defines the locations that {\tt Person} can wander to.
+
+\section{Describing Monsters}
+\spredn{monster}{(Object)}{1}
+succeeds if {\tt Object} is described as a {\tt monster} in {\tt description/4}. Monsters are interactive things that generally hinder the player's progress, and are more generic than people, but are otherwise similar to people.
+
+\spred{see\_monster}{(Monster)}{1}
+Similar to {\tt see\_object/1}, {\tt see\_monster/1} will be called any time the description of the location of the player is printed; it will be called for each monster in that location. Generally this predicate should only contain a {\tt writefw/2} statement (which should end with a newline) and perhaps some conditions.
+
+\section{Describing Stores}
+Defining a store merely requires a {\tt description/4} predicate, an {\tt initial/2} predicate to define the location, and a {\tt wares/2} predicate to define what is for sale. Not defining a {\tt words/2} will mean the user cannot refer to it, and subsequently a {\tt pick\_up/1} will not be needed either.
+
+\spredn{wares}{(Store, Wares)}{2}
+defines a list of pairs that {\tt Store} sells, where each pair has the item as a key and the cost as the value.
+
+\chapter{Commands}
+\section{Managing Player Commands}
+\spredn{die}{}{0}
+kills the player.
+
+\spredn{display\_exits}{(Place)}{1}
+displays the list of exits the player can take from {\tt Place} using either {\tt list\_connections/1} or {\tt list\_exits/1} based on whether {\tt showall} is asserted.
+
+\spredn{do}{(CommandList)}{1}
+handles the player typing in {\tt CommandList}, obtained from {\tt get\_command/1}.
+
+\spredn{inventory}{}{0}
+prints the list of objects the player is carrying as well as how much money the player has.
+
+\spredn{list\_exits}{(Place)}{1}
+prints the list of directions the player can travel from {\tt Place}.
+
+\spredn{list\_have}{}{0}
+prints the list of items the player is carrying.
+
+\spredn{list\_monsters}{(Place)}{1}
+prints the list of objects the player can see at {\tt Place} by calling {\tt see\_monster/1}.
+
+\spredn{list\_people}{(Place)}{1}
+prints the list of objects the player can see at {\tt Place} by calling {\tt see\_person/1}.
+
+\spredn{list\_things}{(Place)}{1}
+prints the list of objects the player can see at {\tt Place} by calling {\tt see\_object/1}.
+
+\spredn{look}{}{0}
+prints the player's current location, the objects, monsters, and people they see, and the exits available.
+
+\spredn{move}{(Thing, Location)}{2}
+retracts the old {\tt location/2} predicate for {\tt Thing} and asserts a new one at {\tt Location}. This is used for both objects and people.
+
+\spredn{print\_help}{}{0}
+displays the help messages.
+
+\spredn{show\_money}{}{0}
+prints a message displaying the amount of money the player currently has.
+
+\section{Navigating the Player}
+\spredn{can\_dir}{(Person, Direction, Place)}{3}
+called whenever a character is attempting to move in direction {\tt Direction}; if successful, {\tt Place} is unified with the new location {\tt Person} would be in.
+
+\spredn{dir}{(ShortName, LongName)}{2}
+indicates that the abbreviation {\tt ShortName} is associated with the full direction {\tt LongName}.
+
+\spredn{fast\_travel}{}{0}
+is called whenever the player attempts to bike, and handles selecting location as well as actually moving the player.
+
+\spredn{go}{(Direction)}{1}
+attempts to move the player in direction {\tt Direction}.
+
+\spredn{go\_dir}{(Person, Direction)}{2}
+attempts to move {\tt Person} in direction {\tt Direction}. Only used for the protagonist.
+
+\spredn{wait}{}{0}
+updates all non-player characters without moving the player.
+
+\section{Interacting with Locations}
+\spredn{dig}{(Location)}{1}
+is checked when the player attempts to dig; the location they are currently in is unified with {\tt Location}, and so code to be executed when the player digs should be located in a {\tt dig/1} predicate.
+
+A default {\tt dig/1} is defined in {\tt defaultRules.pl} that tells the player they cannot dig in their current location.
+
+\spredn{jump}{}{0}
+is called whenever the player attempts to jump.
+
+\spredn{lie\_down}{}{0}
+is called whenever the player attempts to lie down.
+
+\spredn{run}{}{0}
+is called whenever the player attempts to run.
+
+\spredn{try\_buy}{}{0}
+handles the player entering the {\tt buy} command.
+
+\spredn{try\_dig}{}{0}
+handles the player entering the {\tt dig} command.
+
+\section{Interacting with Objects}
+\spredn{canLock}{(Key, Door)}{2}
+indicates that the player will successfully be able to lock {\tt Door} if they posses {\tt Key}.
+
+\spredn{canUnlock}{(Key, Door)}{2}
+indicates that the player will successfully be able to unlock {\tt Door} if they posses {\tt Key}.
+
+\spredn{drop}{(Thing)}{1}
+attempts for the player to drop {\tt Thing}.
+
+\spredn{eat}{(Food)}{1}
+is checked whenever the player attempts to eat something. The default rule (in {\tt defaultRules.pl}) is to print a message indicating the player canot eat it and fail. If the predicate succeeds, {\tt Food} is moved to {\tt nowhere} so the player does not have it in their inventory.
+
+\spredn{eat\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and attempts to eat it.
+
+\spredn{kick}{(Thing)}{1}
+is called whenever the player attempts to kick something.
+
+\spredn{kick\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and attempts to kick it.
+
+\spredn{light\_source}{}{0}
+succeeds if the player has a functioning light source and fails otherwise.
+
+\spredn{lock}{(Door)}{1}
+handles the player attempting to lock {\tt Door}.
+
+\spredn{lock\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and attempts to nlock it.
+
+\spredn{look\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and looks at it.
+
+\spredn{put\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and attempts to drop it.
+
+\spredn{take}{(Thing)}{1}
+attempts for the player to take {\tt Thing}.
+
+\spredn{take\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and attempts to take it.
+
+\spredn{talk\_to\_description}{(Description)}{1}
+determines what person or monster the player is referring to by {\tt Description} and attempts to talk to them.
+
+\spredn{try\_eat}{(Object)}{1}
+handles the player attempting to eat {\tt Object}.
+
+\spredn{unlock}{(Door)}{1}
+handles the player attempting to unlock {\tt Door}.
+
+\spredn{unlock\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and attempts to unlock it.
+
+\section{Interacting with People}
+\spredn{give}{(Person, Thing)}{1}
+is called whenever the player attempts to give {\tt Thing} to {\tt Person}. If it succeeds, {\tt Thing} is moved to {\tt Person}. The default rule is to print an appropriate message and fail.
+
+\spredn{give\_description}{(PDesc, TDesc)}{2}
+determines what object the player is referring to by {\tt TDesc}, what person the player is referring to by {\tt PDesc}, and attempts to give the object to the player.
+
+\spredn{kill}{(Person, Thing)}{1}
+is called whenever the player attempts to attack or kill {\tt Person} with {\tt Thing}. If it succeeds, the person (or monster) is replaced with a dead version. The default rule is to print an appropriate message and fail.
+
+\spredn{kill\_description}{(PDesc, TDesc)}{2}
+determines what object the player is referring to by {\tt TDesc}, what person the player is referring to by {\tt PDesc}, and attempts to kill the person with the object.
+
+\spredn{talk\_to}{(Person)}{1}
+is called whenever the player tries to talk to {\tt Person}. Note that there are two default predicates for this in {\tt defaultRules.pl}.
+
+\sspredn{random\_statements}{(Person, List)}{2}
+contains a list of statements that, if defined, will be chosen from randomly by a default {\tt talk\_to/1} each time the player talks to {\tt Person}.
+
+\sspredn{sequential\_statements}{(Person, List)}{2}
+contains a list of statements that, if defined, will be iterated through by a default {\tt talk\_to/1} each time the player talks to {\tt Person}.
+
+\sspredn{talk\_message}{(Index, List, Person)}{3}
+is merely a helper predicate for defining the default {\tt talk\_to/1}s for sequential and random statements; it will print the appropriate message from {\tt List}
+
+\spredn{throw\_description}{(PDesc, TDesc)}{2}
+determines what object the player is referring to by {\tt TDesc}, what person the player is referring to by {\tt PDesc}, and attempts to throw the object at the person.
+
+\spredn{toss}{(Person, Thing)}{1}
+is called whenever the player attempts to throw {\tt Thing} at {\tt Person}. The default rule is to print an appropriate message and fail.
+
+\section{Interacting with Stores}
+\spredn{buy}{(Store)}{1}
+is called whenever the user attempts to buy something at a store, and will list the available wares and have the user select one.
+
+\sspredn{attempt\_purchase}{(Item, A)}{2}
+is called once the player has selected an item to buy, and will check if the player has enough money, and if so transfer the item from the store to the player.
+
+\sspredn{name\_and\_cost}{(A, Thing, String)}{3}
+is a helper method for use with {\tt select\_thing/3} to list the available wares at a store.
+
+\spredn{purchased}{(Item)}{1}
+is called whenever the player buys an item. If it fails, the object cannot be purchased. The default is to do nothing and succeed.
+
+\section{Controlling Game Flow}
+\spredn{attempt\_quit}{}{0}
+quits the game.
+
+\spredn{begin}{}{0}
+initializes everything for the game and displays the initial message.
+
+\spredn{command\_loop}{}{0}
+controls the main loop of running the game.
+
+\spredn{continue\_game}{}{0}
+prints a message welcoming the player back and begins the loop controlling the game.
+
+\spredn{display\_ending}{}{0}
+prints the message for the game ending, based upon which ending the player has triggered.
+
+\spredn{end\_win}{}{0}
+asserts {\tt state(game\_over)} so that the player is not allowed to perform actions.
+
+\spredn{start\_game}{}{0}
+starts the game for the first time, and being running it.
+
+\spredn{restart}{}{0}
+restarts the game, including re-printing the initial message.
+
+\section{Debug Commands}
+\spredn{acquire\_description}{(Description)}{1}
+determines what object the player is referring to by {\tt Description} and magically acquires it.
+
+\spredn{list\_connections}{(Place)}{1}
+prints the list of places the player can travel to from {\tt Place}, along with their associated directions.
+
+\spredn{list\_people\_locations}{}{0}
+prints a list of characters and their current locations.
+
+\spredn{show\_counters}{}{0}
+prints a list of all counters.
+
+\spredn{warp}{(Place)}{1}
+teleports the player to {\tt Place}.
+
+\chapter{Standalone Files}
+\section{Getting Keypresses (keypress.pl)}
+\spredn{get\_char\_set}{(List, Index)}{2}
+waits for the user to enter a character in a list of lists of character codes in \texttt{List}, and unifies \texttt{Index} with the index of the list containing the entered code.
+
+Example: \texttt{get\_char\_set(["Aa", "Bb"], X).} 
+
+This will wait for the user to enter an `A' or `B', and unify \texttt{X} with \texttt{0} for `A' and \texttt{1} for `B'.
+
+\spredn{get\_from\_list}{(List, Index)}{2}
+will print a list of options from character codes in \texttt{List}, wait for the user to select one, and unify \texttt{Index} with the index of the selection, or \texttt{-1} if the user cancels selection.
+
+\spredn{get\_YN}{}{0}
+will wait for the user to enter a `Y' (in which case it succeeds) or an `N' (in which case it fails.)
+
+\spredn{select\_thing}{(List, Pred, Thing)}{3}
+will take a list of things, unify each one with \texttt{call(Pred, Item, String)}, print a list of the strings obtained in this way, wait for the user to select one, and unify the selection with \texttt{Thing}, or unify {\tt Thing} with \texttt{[]} if the user cancels.
+
+\spredn{get\_list\_index}{(Length, Index)}{2}
+will wait for the user to enter a letter for a list selection, and unify {\tt Index} with the index of the selection, or with {\tt -1} if the user cancels.
+
+\spredn{list\_things}{(Index, List)}{2}
+will print a list of things for a user selection, including a {\tt [Z] Cancel} option.
+
+\section{People Wandering (peopleCode.pl)}
+\spredn{initialize\_wander\_counters}{}{0}
+This predicate should be called to initialize all of the counters for wandering people.
+
+\spredn{update\_moves}{}{0}
+will update all of the moves that have been indicated should be performed with {\tt will\_move/3}, check for wandering characters, print the appropriate messages, and run the appropriate code for interactions.
+
+\spredn{will\_move}{(Person, From, To)}{3}
+will add {\tt Person} to the list of people to moved, and will relocate {\tt Person} from {\tt From} to {\tt To} (and print the appropriate messages) the next time that {\tt update\_moves/0} is called.
+
+\spredn{check\_wander}{}{0}
+checks each person, decrements their counter until they should wander, checks if it is {\tt 0}, and if so calls {\tt wander\_person/1} on them and resets their wander counter.
+
+\spredn{clear\_movements}{}{0}
+retracts all clauses of {\tt just\_moved/3} in order to prepare for the next movement step.
+
+\spredn{encounter}{}{0}
+takes care of calling {\tt enter} for every person who has a reaction to moving into the same location as the player.
+
+\spredn{pick\_up\_stuff}{(Person)}{1}
+checks that {\tt Person} will pick up anything in the room they are in that is defined in their {\tt picks\_up/2} predicate.
+
+\spredn{pickups}{}{0}
+checks all people and calls {\tt pick\_up\_stuff/1} with each of them.
+
+\spredn{update\_locations}{}{0}
+updates the location of each person who needs to be moved.
+
+\spredn{wander}{(Person, Places, Dest)}{3}
+picks a location that {\tt Person} can wander to, updates {\tt will\_move/3}, and binds {\tt Dest} to the location chosen.
+
+\spredn{wander\_person}{(Person)}{1}
+checks to see if {\tt Person} should wander, and calls {\tt wander/3} appropriately if so.
+
+\spredn{wandered\_messages}{}{0}
+prints the messages for people moving into and out of the player's location.
+
+\section{Identifying Objects (identificationCode.pl)}
+\spredn{identify}{(Object, Description, Pred)}{3}
+will attempt to find objects that fit the list of terms bound to {\tt Description} and satisfy the predicate {\tt Pred}; it will bind one at a time to {\tt Object} until it fails when it cannot find any more.
+
+\spredn{get\_object}{(Object, Description, Pred, None, Many)}{5}
+will bind {\tt Object} to the unique object satisfying {\tt identify/3}, fails and prints {\tt None} if none are found, or presents the user with a selection after printing {\tt Many} if multiple objects would succeed.
+
+\spredn{get\_object}{(Object, Description, Pred, NoneEmpty, NoneWords, Many)}{6}
+will bind {\tt Object} to the unique object satisfying {\tt identify/3}, fails and prints {\tt NoneEmpty} if none are found and no description was given, fails and prints {\tt NoneWords} if none are found a description was provided, or presents the user with a selection after printing {\tt Many} if multiple objects would succeed.
+
+\spredn{get\_objects}{(List, Object, Description, Pred)}{4}
+will bind {\tt List} to the list of all objects that would be returned by {\tt identify/3}.
+
+\spredn{choose}{(Object, List, Description, None, Many)}{5}
+will take the list of items obtained by {\tt get\_objects/4}, print the {\tt None} message if none are obtained, print the {\tt Many} message and prompt the user with a selection if multiple objects fit the description, and bind {\tt Object} with the appropriate item, or fail if there was either no appropriate item or the user cancelled selection.
+
+\section{Getting Commands from the User (getcommand.pl)}
+\spredn{get\_command}{(List)}{1}
+will print a prompt, read a line of input, strip of non-alpha-numeric characters, and split into a list of pairs of terms which are bound to {\tt List}. \\
+Each line that the user enters is split by prepositions and returned as a list of pairs, the first pair having a key of the first word and a value of the non-preposition terms following it, and each subsequent pair beginning with a preposition and followed by the list of terms. Articles (a, an, the) are ignored. \\
+Examples:
+
+``Go to the dark room" would become {\tt [go-[], to-[dark, room]]}
+
+``Kill the troll with the nasty knife" would become {\tt [kill-[troll], with-[nasty, knife]]}.
+\spredn{descriptor}{(List, Term)}{2}
+takes a difference list {\tt List} and binds {\tt Term} to the list of words from the beginning of {\tt List} that are not prepositions (this would be the sequence of words that will be treated as a description for an object in the game).
+
+\spredn{expand}{(List, OldList)}{2}
+will expand abbreviations in {\tt Oldlist} and unify it with {\tt List}.
+
+\spredn{piece}{(List, TermList)}{2}
+takes a difference list {\tt List} and recursively binds {\tt TermList} to the list of preposition-descriptor pairs in the list.
+
+\spredn{prep}{(List, Term)}{2}
+takes a difference list {\tt List} and binds {\tt Term} to the first word if it is a preposition, and fails otherwise.
+
+\spredn{prepp}{(List, Pair)}{2}
+takes a difference list {\tt List} and binds {\tt Pair} to a preposition-descriptor pair if {\tt List} begins with a preposition.
+
+\spredn{preposition}{(Word)}{1}
+indicates that {\tt Word} should be parsed as a preposition.
+
+\spredn{splitList}{(List, PairList)}{2}
+takes a list of words {\tt List} and converts it to a list of pairs as would be output by {\tt get\_command/1} and binds it to {\tt PairList}.
+
+\spredn{strip\_downcase}{(In, Out)}{2}
+will remove all non-space, non-alphanumeric characters from {\tt In} and unify it with {\tt Out}.
+
+\spredn{strip\_irrelevant}{(List, OldList)}{2}
+will remove all article terms from {\tt Oldlist} and unify it with {\tt List}.
+
+\spredn{verb}{(List, Term)}{2}
+takes a difference list {\tt List} and binds {\tt Term} to the first word, which shall be treated as the verb in the command.
+
+\spredn{verbp}{(List, Pair)}{2}
+takes a difference list {\tt List} and binds {\tt Pair} to a verb-descriptor pair where the verb is the first element of {\tt List}.
+
+\section{Forcing Output to Wrap at Words (writewrap.pl)}
+\spred{writefw}{(Format)}{1}
+Equivalent to {\tt writef(Format, [])}.
+
+\spredn{writefw}{(Format, Arguments)}{2}
+works similarly to {\tt writef/2} except that it will check the terminal width and ensure that line breaks occur at a space character.
+
+\spredn{wrapline}{(Line, Size)}{2}
+splits the given {\tt Line} into words seperated by spaces and prints them using {\tt write\_pieces/4}.
+
+\spredn{wraplines}{(List, Size)}{2}
+recursively prints a list of lines, wrapping appopriately at length {\tt Size}.
+
+\spredn{write\_piece}{(CurPos, Piece, NextPos, Size)}{4}
+will write one word, starting with a new line if the current position ({\tt CurPos}) plus the length of the word is greater than {\tt Size}, and binding {\tt NextPos} to the new position on the line.
+
+\spredn{write\_pieces}{(CurPos, List, NextPos, Size)}{4}
+recursively writes a list of words, wrapping as appopriate, using {\tt write\_piece/4}.
+
+\spredn{write\_space}{(CurPos, NextPos, Size)}{3}
+will write a space, or a newline instead if the position at {\tt CurPos} would instead wrap onto a new line (of length {\tt Size}), and binds {\tt NextPos} to the new position on the line.
+
+\spredn{writewrap}{(Format, Arguments, Size)}{3}
+writes similarly to {\tt writef/2}, but wraps at the end of a line of length {\tt Size} only at spaces.
+
+\chapter{Dynamic Predicates}
+\predn{showall}{}{0}
+is a debug feature that, if asserted, indicates that the locations in each directions should be printed with the {\tt look} command.
+
+\predn{counter}{(Counter, X)}{2}
+indicates that {\tt Counter} is set at {\tt X}.
+
+\predn{dead}{(Thing)}{1}
+indicates that {\tt Thing} is dead. Currently only relevant for {\tt prot}.
+
+\predn{just\_moved}{(Person, From, To)}{3}
+indicates that {\tt Person} will be moved the next time {\tt update\_moves/0} is called.
+
+\predn{location}{(Thing, Place)}{2}
+indicates that {\tt Thing} is in {\tt Place}. This could be the location of a person, the location of an object, or the location of the player ({\tt prot}).
+
+\predn{locked}{(Door)}{1}
+indicates that {\tt Door} is locked.
+
+\predn{money}{(Amount)}{1}
+indicates that the player has {\tt Amount} units of currency.
+
+\predn{state}{(Thing)}{1}
+is used for generic things that need to be set to track something.
+
+\predn{unchecked}{(Thing)}{1}
+indicates that {\tt Thing} has not been checked out at the library. Currently this is only relevant for {\tt importantBook}.
+
+\predn{unlocked}{(Door)}{1}
+indicates that {\tt Door} is unlocked.
+
+\chapter{Working with Dynamic Predicates}
+\section{Initialization}
+\spredn{init\_locked}{(Door)}{1}
+indicates that {\tt locked(Door)} should initially be asserted.
+
+\spredn{init\_objs}{}{0}
+will initialize all dynamic predicates when called.
+
+\spredn{init\_state}{(State)}{1}
+indicates that {\tt state(State)} should intially be asserted.
+
+\spredn{initial}{(Thing, Location)}{2}
+indicates that {\tt location(Thing, Location)} should initially be asserted.
+
+\section{Working with Counters}
+\spredn{decrement\_counter}{(Thing)}{1}
+will decrement the counter of {\tt Thing}, or set it to {\tt -1} if it has not been previously defined.
+
+\spredn{increment\_counter}{(Thing)}{1}
+will increment the counter of {\tt Thing}, or set it to {\tt 1} if it has not been previously defined. It will also check if any events need to happen as a result of that incrementation.
+
+\spredn{set\_counter}{(Thing, Value)}{2}
+will set the counter of {\tt Thing} to {\tt Value}, retracting the previous value if it exists.
+
+\section{Counting Money}
+\spredn{add\_money}{(Amount)}{1}
+will add {\tt Amount} to the amount of money the player has, or set it to {\tt Amount} if the player's money has not been initialized.
+
+\spredn{sub\_money}{(Amount)}{1}
+will subtract {\tt Amount} from the amount of money the player has, or set it to {\tt -Amount} if the player's money has not been initialized, though this should probably not be allowed to happen--after all, this is a player and not a government.
+
+\section{State}
+\spredn{set\_state}{(X)}{1}
+will assert {\tt state(X)} unless it has already been asserted.
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{part}{Index of Predicates}
+\printindex
+
+\end{document}

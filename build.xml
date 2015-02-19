@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="text-adventure" basedir="." default="generate-doc">
+    <taskdef name="latex" classname="se.khalek.ant.LaTeX"/>
+
+    <target name="generate-doc">
+        <latex source="latex/userdoc.tex" pdftex="true" clean="true" includes="*.log *.aux *.toc *.idx *.out"/>
+        <latex source="latex/documentation.tex" pdftex="true" clean="true" includes="*.log *.aux *.toc *.idx *.out"/>
+    </target>
+</project>

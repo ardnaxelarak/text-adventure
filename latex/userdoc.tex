@@ -1,0 +1,122 @@
+\documentclass{report}
+\DeclareFontShape{OT1}{cmtt}{bx}{n}{<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>cmttb10}{}
+\usepackage{amsmath}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage[notindex]{tocbibind}
+\makeindex
+\usepackage{hyperref}
+
+\setdescription{leftmargin=\parindent, labelindent=\parindent, font=\ttfamily\bfseries}
+
+\hypersetup{
+	bookmarks=true,
+	pdftitle={User Guide},
+	colorlinks=true,
+	linkcolor=blue
+}
+
+\let\cleardoublepage\clearpage
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\newcommand{\boldindex}[1]{\textbf{\hyperpage{#1}}}
+
+\begin{document}
+\title{``Dr. Rorhbaugh and Mr. Tigerram" \\ User Guide}
+\author{Nathan R Chaney \\ Zachary J Felix \\ Rebekah P Smith}
+\maketitle
+
+\tableofcontents
+
+\chapter{Introduction}
+``Dr. Rohrbaugh and Mr. Tigerram'' is a text adventure created by Nathan Chaney, Zachary Felix, and Rebekah Smith for their final project for Organization of Programming Languages class in the spring of 2013.  The game takes place at Messiah College, and the player discovers that Dr. Rohrbaugh (the professor for the aforementioned class) has gone missing. The object of the game is to determine what has happened and to resolve the situation if possible.
+
+Based on the player's actions, a number of different endings are possible. Some endings are better than others, and it is up to you, the player, to figure out how to achieve each ending!\footnote{This is how we try to get you addicted to our game.}
+
+\chapter{Setting Up the Game}
+\section{Windows}
+Running ``Dr. Rohrbaugh and Mr. Tigerram" should be fairly straightforward on Windows. Inside the game folder, there should be an executable {\bf adventure.exe}; as long as this is located in the same folder as {\bf libgmp-10.dll}, {\bf libswipl.dll}, {\bf plterm.dll}, and {\bf pthreadGC2.dll}, you should be able to run the program simply by double-clicking {\bf adventure.exe}.
+
+If this does not work, follow the instructions under ``Other Platforms" below.
+
+\section{Macintosh}
+Running ``Dr. Rohrbaugh and Mr. Tigerram" on Macintosh should also be fairly straightforward. Simply open a terminal and navigate to the directory containing the {\bf adventure} executable; this should run the game in your terminal.  Alternately, you might be able to simply double-click its icon and have it open in the terminal.
+
+If this does not work, follow the instructions under ``Other Platforms" below.
+
+\section{Other Platforms}
+For a general-purpose procedure that will work regardless of platform, download SWI-Prolog from \url{www.swi-prolog.org} or a package repository for your platform. Launch SWI-Prolog and consult {\bf adventure.qlf} using the command {\tt [\textquotesingle /path/to/adventure.qlf\textquotesingle].} or launch prolog with the command {\tt \bf swipl -s /path/to/adventure.qlf}.
+
+\chapter{Getting Started}
+The player begins in Dr. Rohrbaugh's office with a shovel. The player is controlled by entering commands in English at the prompt, which control the player. Throughout this section of the document, commands typed to the interpreter will be formatted in a bold font, {\tt \bf like this}.
+
+\section{Movement}
+Basic commands for movement are of the form {\tt \bf go south}, {\tt \bf south}, or just {\tt \bf s}. The twelve main directions are listed as follows (with their abbreviations in parentheses): {\tt \bf north} ({\tt \bf n}), {\tt \bf northeast} ({\tt \bf ne}), {\tt \bf east} ({\tt \bf e}), {\tt \bf southeast} ({\tt \bf se}), {\tt \bf south} ({\tt \bf s}), {\tt \bf southwest} ({\tt \bf sw}), {\tt \bf west} ({\tt \bf w}), {\tt \bf northwest} ({\tt \bf nw}), {\tt \bf up} ({\tt \bf u}), {\tt \bf down} ({\tt \bf d}), {\tt \bf in}\footnote{{\tt \bf in} does not have a shortened form.}, and {\tt \bf out}\footnote{neither does {\tt \bf out}.}.
+
+\section{Objects}
+As you go on your quest, you will likely encounter a number of objecs that can be very useful. This section describes some common commands to interact with these objects.
+
+Objects are each described by a (hopefully comprehensive) list of words, which are matched with the words typed by the user. If one word doesn't work to refer to an object, try other words that might be defined; if that still doesn't work, typing a command with a specific object will give a menu of all possible objects.
+
+To examine an object in more detail, use a command such as {\tt \bf examine key} (or the equivalent {\tt \bf x key}), {\tt \bf look at key}, {\tt \bf look key}, or {\tt \bf l key}. Note that {\tt \bf look} by itself will look at the location you are in, and not an object.
+
+To take an object, use a command such as {\tt \bf take plant}, {\tt \bf grab fish}, {\tt \bf pick up bullet}, or {\tt \bf get sword}. If there is no such object to be taken, you will be told as such; if there are multiple objects fitting the description, a pop-up menu will appear asking which one you mean. Note that not all objects can be taken.
+
+To drop an object, use a command such as {\tt \bf drop brick}, or {\tt \bf put down chair}. Based on other characters or objects in the area, this might have some side effects, so try all sorts of things!
+
+To list the objects you are carrying, type {\tt \bf inventory} or {\tt \bf i}. This will also list the amount of money you are carrying. If you get stuck, try looking at the objects you are carrying to provide some insight to your situation.
+
+To eat an object, use a command such as {\tt \bf eat melon}, {\tt \bf consume melon}, {\tt \bf swallow melon}, or even {\tt \bf ingest melon}. Note that not all objects can be eaten, and some objects might be considered harmful if eaten.
+
+To unlock a door, use a command such as {\tt \bf unlock door}.\footnote{Hopefully this was fairly obvious.}Note that to unlock a door you must have the appropriate key or keys.  Likewise, to lock a door use the command {\tt \bf lock door}.
+
+\section{People}
+Throughout your quest, you will encounter a number of people. Each person has their own dialogue and will generally provide helpful advice eventually, though determining what is helpful and what is not can be a bit tricky. This section describes common commands for interacting with people and person-like characters.
+
+To talk to a character, use the command {\tt \bf talk to ghost} or the abbreviation {\tt \bf t ghost}. As mentioned above, each character will say different things, and some things are more helpful than others. If you get stuck, try talking to the many people you will find around campus for some hints as to what to do.
+
+To throw something at a character, use a command along the lines of {\tt \bf throw baseball to umpire} or {\tt \bf throw brick at troll}. Only certain things can be thrown at people, and some things are more helpful than others.  
+In a similar way, to give an object to a character, use a command such as {\tt\bf give seeds to gardener}.
+
+To attack a person, use a command such as {\tt \bf attack hobgoblin with jackhammer}. Attacking people is generally not a good idea and could lead to you being killed.
+
+\section{Locations}
+Throughout the game, you will travel through a large number of locations. Each one has something useful to offer the player, unless it doesn't. 
+
+To dig at a location, type {\tt \bf dig}. Note that the player must have some sort of digging implement to do this, and that it is not necessarily useful to dig in every location.
+
+When located at a store, type {\tt \bf buy} to display the wares for sale and purchase something. Perhaps this is fairly obvious, but one must possess the required amount of money into to purchase an object.
+
+\section{Interacting with the Game}
+To exit the game, type {\tt \bf end}, {\tt \bf quit}, or {\tt \bf halt}.
+
+To restart, type {\tt \bf restart}.
+
+To save your game, type {\tt \bf save filename}, replacing ``filename'' with the name of the file you want to save. This should create an executable file in the directory from which the game was launched that can be run to restore your game. Note that this is an experimental feature so far, and may or may not actually work.
+
+\chapter{Hints}
+\section{Objects}
+This section describes a few useful\footnote{Note: some objects might not actually be useful} objects that the player may want to acquire.
+
+\begin{itemize}
+\item The player starts with a shovel. This is useful for digging, and the player would probably not be well served to abandon his trusty shovel.
+
+\item Campus is very large. If the player can find some way of travelling faster, it would probably aid his quest, as it could save a considerable amount of time in traversing distance. Perhaps someone on campus will be able to help you find such a device.
+
+\item Rumors have been spread of a magical floppy disk somewhere on campus that can hold 1.6 MB. Perhaps the player would find this useful as well.\footnote{If you actually waste time looking for this, don't blame us; we never said it was actually in the game...}
+\end{itemize}
+
+\section{People}
+This section mentions some of the people you might find around campus, and where they tend to hang out.
+
+\begin{itemize}
+\item Kim Phipps, the president of Messiah College, might have some useful information for you. She lives at the president's house.
+\item Dr. Weaver, one of the CIS professors, might have some useful information about a legend that might be relevant. He tends to hang out near his office in Frey, but sometimes wanders over to Lottie to eat.
+\item Dr. Fish, an engineering professor, knows a lot of students and might have heard something about Dr. Rohrbaugh's fate. He generally wanders around Frey.
+\end{itemize}
+
+\end{document}
