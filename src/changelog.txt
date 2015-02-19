@@ -1,0 +1,10 @@
+Version 1.00
+	Original version turned in to Dr. Rohrbaugh
+
+Version 1.01
+	Dr. Hare's filing cabinet can no longer be picked up
+	Fixed missing cut in dig messages
+	Fixed extra description of bike rack
+	People with random statements never say the same thing twice in a row
+	Taran picks up things
+	Changed maze slightly
