@@ -1,0 +1,10 @@
+-D LANGUAGE=en_us
+-D MESSAGESTYLE=neu
+-FC
+-Fo build
+-Fy build
+-Fs src
+-o DRMT.t3
+-lib system
+-lib adv3/adv3
+-source DRMT boyer frey

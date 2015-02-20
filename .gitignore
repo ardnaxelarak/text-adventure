@@ -1,2 +1,4 @@
 .*.swp
 build
+*.t3
+GameInfo.txt
