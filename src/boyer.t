@@ -7,6 +7,19 @@ boyer: OutdoorRoom
     "You feel a shudder as you watch humanities majors scurry into and out of Boyer as though they actually had something important to do. The building looks dark and foreboding. You see Hostetter chapel to the east, Hoffman to the northeast, and Eisenhower circle to the north, as well as Old Main in the distance to the west and Climenhaga off to the southwest. "
     in = boyerFirst
     north = frey
+    dobjFor(DigWith)
+    {
+        action()
+        {
+            if (!rohrbaughOfficeKey.discovered)
+            {
+                "Using {your/his} <<gIobj.name>> {you/he} dig{s} around, and to {your/his} surprise {you/he} find{s} <<rohrbaughOfficeKey.aName>>! ";
+                rohrbaughOfficeKey.discover();
+            }
+            else
+                inherited;
+        }
+    }
 ;
 
 boyerFirst: DarkRoom 'First Floor Hallway'

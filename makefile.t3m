@@ -7,4 +7,5 @@
 -o DRMT.t3
 -lib system
 -lib adv3/adv3
--source DRMT boyer frey
+-source DRMT global
+-source boyer frey portables

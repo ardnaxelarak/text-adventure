@@ -1,7 +1,7 @@
 #include <adv3.h>
 #include <en_us.h>
 
-frey: OutdoorRoom
+frey: HasBikeRack, OutdoorRoom
     'Frey Hall'
     'the outside of Frey Hall'
     "You are stainding outside Frey Hall. You see a bike rack, a bunch of flowers, and some other stuff. You see Hoffman to the west, the library to the south, and Kline and Jordan to the northeast. "
@@ -13,22 +13,15 @@ frey: OutdoorRoom
     'other stuff'
     'other stuff'
     "It's some generic other stuff, typical to expect to see around a college campus. "
-    cannotTakeMsg = 'It\'s not anything you particularly want to carry around with you... '
+    cannotTakeMsg = 'It\'s not anything {you/he} particularly want{s} to carry around with {you/him}... '
 ;
 
-+Fixture
-    '(bike) rack'
-    'bike rack'
-    "It's a rack for putting bicycles while students are in class. "
-    cannotTakeMsg = 'The bike rack is a little big to be carrying around. '
-;
-
-+Fixture
++Immovable
     'colorful flower*flowers*'
     'colorful flowers'
     "Many colorful flowers line the outside of Frey Hall. "
     isPlural = true
-    cannotTakeMsg = 'As you go to pluck a flower, a wild bulbasaur appears! You decide not to take a flower, and the bulbasaur disappears. '
+    cannotTakeMsg = 'As {you/he} {goes} to pluck a flower, a wild bulbasaur appears! {You/he} decide{s} not to take a flower, and the bulbasaur disappears. '
 ;
 
 freyLobby: Room
@@ -102,7 +95,7 @@ fishOffice: Room
     out = freySecond
 ;
 
-+Fixture
++Heavy
     'fish desk'
     'desk'
     "It's a scaly desk shaped like a fish. "
@@ -124,11 +117,11 @@ hareOffice: Room
     out = freyThird
 ;
 
-+Fixture
++Heavy
     '(filing) cabinet'
     'filing cabinet'
     "It's Dr.\ Hare's filing cabinet. It holds papers and stuff. "
-    cannotTakeMsg = 'You try to pick up the filing cabinet, but it\'s way too heavy. '
+    cannotTakeMsg = '{You/he} tr{ies} to pick up the filing cabinet, but it\'s way too heavy. '
 ;
 
 labs: Room
@@ -138,12 +131,12 @@ labs: Room
     west asExit(out)
 ;
 
-+Fixture
++Heavy
     '(lab) printer*printers*'
     'lab printers'
     "Two printers sit at the front of the room to meet the printing needs of students. "
     isPlural = true
-    cannotTakeMsg = 'The printers are far too heavy, and would be of little use to you once disconnected from the network in any case. '
+    cannotTakeMsg = 'The printers are far too heavy, and would be of little use to {you/him} once disconnected from the network in any case. '
 ;
 
 +Fixture
@@ -151,5 +144,5 @@ labs: Room
     'lab computers'
     "Several rows of computers fill the room. "
     isPlural = true
-    cannotTakeMsg = 'The computers are tied down. Even if you wanted to take one of these heavy machines, you would be unable to. '
+    cannotTakeMsg = 'The computers are tied down. Even if {you/he} wanted to take one of these heavy machines, {you/he} would be unable to. '
 ;
