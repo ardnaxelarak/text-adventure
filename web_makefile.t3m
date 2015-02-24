@@ -1,10 +1,13 @@
 -D LANGUAGE=en_us
 -D MESSAGESTYLE=neu
+-D TADS_INCLUDE_NET
 -FC
 -Fo build
 -Fy build
 -Fs src
--o DRMT.t3
+-o web_DRMT.t3
 -lib system
--lib adv3/adv3
+-lib adv3/adv3web
+-lib webui
+-source tadsnet
 -lib DRMT
