@@ -6,7 +6,9 @@ frey: HasBikeRack, OutdoorRoom
     'the outside of Frey Hall'
     "You are stainding outside Frey Hall. You see a bike rack, a bunch of flowers, and some other stuff. You see Hoffman to the west, the library to the south, and Kline and Jordan to the northeast. "
     in = freyLobby
-    south = boyer
+    west = hoffman
+    south = library
+    northeast = klineJordan
 ;
 
 +Fixture

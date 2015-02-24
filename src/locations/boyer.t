@@ -3,10 +3,16 @@
 
 boyer: OutdoorRoom
     'Boyer Hall'
-    'the outside of Boyer Hall'
-    "You feel a shudder as you watch humanities majors scurry into and out of Boyer as though they actually had something important to do. The building looks dark and foreboding. You see Hostetter chapel to the east, Hoffman to the northeast, and Eisenhower circle to the north, as well as Old Main in the distance to the west and Climenhaga off to the southwest. "
+    'Boyer Hall'
+    "You feel a shudder as you watch humanities majors scurry into and out of Boyer Hall as though they actually had something important to do. The building looks dark and foreboding. "
     in = boyerFirst
-    north = frey
+    northeast = hoffman
+    north = ecc
+    west = oldMain
+    southwest = climenhaga
+    east = chapel
+    unknownDestinations = [in]
+
     dobjFor(DigWith)
     {
         action()
@@ -33,7 +39,7 @@ boyerFirst: DarkRoom 'First Floor Hallway'
 parmerCinema: DarkRoom 
     'Parmer Cinema'
     'Parmer Cinema'
-    "You are in Parmer Cinema; there are a bunch of seats and a giant screen in the front of the room. The first floor hallway is to the west. "
+    "You are in Parmer Cinema; there are a bunch of seats and a giant screen in the front of the room. "
     west = boyerFirst
     out asExit(west)
 ;

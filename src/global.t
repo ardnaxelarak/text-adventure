@@ -21,6 +21,14 @@ modify Thing
     }
 ;
 
+modify Room
+    unknownDestinations = []
+    actorKnowsDestination(actor, conn)
+    {
+        return unknownDestinations.indexOf(conn) ? inherited(actor, conn) : true;
+    }
+;
+
 sittingOnObj: PreCondition
     checkPreCondition(obj, allowImplicit)
     {

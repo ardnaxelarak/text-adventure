@@ -3,7 +3,7 @@
 
 shovel: Thing
     'reddish rusty shovel'
-    'shovel'
+    'reddish shovel'
     @me
     "It is a shovel with a vague reddish hue that {you/he} hope{s} is rust. "
     dobjFor(Drop)
@@ -24,7 +24,7 @@ shovel: Thing
 basketball: Thing
     '(basket) ball/basketball'
     'basketball'
-    @boyer
+    @sports
 ;
 
 lantern: Hidden, Flashlight
@@ -149,7 +149,7 @@ tumbleweed: Thing
 bike: BasicChair
     'bike/bicycle'
     'bike'
-    @boyer
+    @climenhaga
     "It's a bike. You can use it to go places you have visited. "
     specialDesc = "You see a bike <<location.ofKind(HasBikeRack) ? 'sitting in the bike rack' : 'lying on the ground'>>. It doesn't seem to belong to anyone nearby. "
     dobjFor(Take)

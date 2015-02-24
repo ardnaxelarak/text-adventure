@@ -8,4 +8,5 @@
 -lib system
 -lib adv3/adv3
 -source DRMT global
--source boyer frey portables
+-source portables
+-lib locations
